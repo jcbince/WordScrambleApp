@@ -73,7 +73,7 @@ class ViewController: UITableViewController {
                 if isReal(word: lowerAnswer) {
                     usedWords.insert(answer, at: 0)
                     
-                    let indexPath = IndexPath(row: 0, section: 1)
+                    let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
                 }
             }
