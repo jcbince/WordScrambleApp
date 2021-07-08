@@ -17,6 +17,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+    
         // Do any additional setup after loading the view.
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt")
         {
@@ -52,7 +53,7 @@ class ViewController: UITableViewController {
     
     @objc func promptForAnswer() {
         let ac = UIAlertController(title: "Enter Answer", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        ac.addTextField()//ADDED TEXT FIELD
         let submitAction = UIAlertAction(title: "Submit", style: .default) {
             [weak self, weak ac] action in
             guard let answer = ac?.textFields?[0].text else {return}
