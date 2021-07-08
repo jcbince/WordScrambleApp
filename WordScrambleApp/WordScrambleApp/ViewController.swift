@@ -55,7 +55,7 @@ class ViewController: UITableViewController {
         let ac = UIAlertController(title: "Enter Answer", message: nil, preferredStyle: .alert)
         ac.addTextField()//ADDED TEXT FIELD
         let submitAction = UIAlertAction(title: "Submit", style: .default) {
-            [weak self, weak ac] action in
+            [weak self, weak ac] _ in
             guard let answer = ac?.textFields?[0].text else {return}
             self?.submit(answer)
             
@@ -66,9 +66,43 @@ class ViewController: UITableViewController {
     
     func submit(_ answer:String)
     {
+        let lowerAnswer = answer.lowercased()
         
+        if isPossible(word: lowerAnswer) {
+            if isOriginal(word: lowerAnswer) {
+                if isReal(word: lowerAnswer) {
+                    usedWords.insert(answer, at: 0)
+                    
+                    let indexPath = IndexPath(row: 0, section: 1)
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
     }
-
+    
+    func isPossible(word: String) -> Bool {
+        guard var tempWord = title?.lowercased() else { return false }
+        
+        for letter in word {
+            if let position = tempWord.firstIndex(of:letter) {
+                tempWord.remove(at: position)
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func isOriginal(word: String) -> Bool {
+        return !usedWords.contains(word)
+    }
+    
+    func isReal(word: String) -> Bool {
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        return misspelledRange.location == NSNotFound
+    }
 
 }
 

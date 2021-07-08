@@ -62,9 +62,9 @@
 				8DB316E32696A0D300AA4A1B /* SceneDelegate.swift */,
 				8DB316E52696A0D300AA4A1B /* ViewController.swift */,
 				8DB316E72696A0D300AA4A1B /* Main.storyboard */,
-				8DB316EA2696A0D400AA4A1B /* Assets.xcassets */,
 				8DB316EC2696A0D400AA4A1B /* LaunchScreen.storyboard */,
 				8DB316EF2696A0D400AA4A1B /* Info.plist */,
+				8DB316EA2696A0D400AA4A1B /* Assets.xcassets */,
 				8DB316F52696A2FA00AA4A1B /* start.txt */,
 			);
 			path = WordScrambleApp;
