@@ -18,7 +18,9 @@ class ViewController: UITableViewController {
         
         //right bar button item with prompt for answer UIAlert
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
-
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
+        
         if let startWordsPath = Bundle.main.path(forResource: "start", ofType: "txt") {
             if let startWords = try? String(contentsOfFile: startWordsPath) {
                 allWords = startWords.components(separatedBy: "\n")
@@ -41,11 +43,12 @@ class ViewController: UITableViewController {
     }
     
     //startGame with tableView.reloadData
-    func startGame() {
+    @objc func startGame() {
         title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
+    
     
     //method promptForAnswer when the navigation right bar button is pressed
     @objc func promptForAnswer() {
